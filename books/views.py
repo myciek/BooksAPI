@@ -3,8 +3,10 @@ import json
 import requests
 from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter
+
 from rest_framework import status
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 
 from .filters import BookFilter
@@ -51,18 +53,13 @@ class FillDatabaseAPIView(APIView):
 
 class ListBookAPIView(ListAPIView):
     serializer_class = BookSerializer
-    filterset_class = BookFilter
     model = Book
     queryset = Book.objects.all()
+    filter_backends = (DjangoFilterBackend, OrderingFilter)
+    filterset_class = BookFilter
+    ordering_fields = ("published_date",)
 
 
-class RetrieveBookAPIView(APIView):
+class RetrieveBookAPIView(RetrieveAPIView):
     serializer_class = BookSerializer
-
-    def get(self, request, *args, **kwargs):
-        try:
-            book = Book.objects.get(id=self.kwargs["id"])
-            serializer = self.serializer_class(book)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Book.DoesNotExist:
-            return Response("Book with this ID not found!", status=status.HTTP_401_UNAUTHORIZED)
+    queryset = Book.objects.all()

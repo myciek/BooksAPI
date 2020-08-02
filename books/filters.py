@@ -5,6 +5,7 @@ from books.models import Book
 
 class BookFilter(FilterSet):
     authors = filters.CharFilter(lookup_expr='icontains')
+    published_date = filters.CharFilter(lookup_expr='icontains')
 
     class Meta:
         model = Book
