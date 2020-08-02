@@ -4,9 +4,9 @@ from books.models import Book
 
 
 class BookFilter(FilterSet):
-    authors = filters.CharFilter(lookup_expr='icontains')
+    author = filters.CharFilter(lookup_expr='icontains', field_name='authors')
     published_date = filters.CharFilter(lookup_expr='icontains')
 
     class Meta:
         model = Book
-        fields = ('authors', 'published_date')
+        fields = ('author', 'published_date')
