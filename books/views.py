@@ -2,9 +2,12 @@ import json
 
 import requests
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 
+from .filters import BookFilter
 from .serializers import CreateBookSerializer, BookSerializer
 from .models import Book
 # Create your views here.
@@ -46,13 +49,11 @@ class FillDatabaseAPIView(APIView):
         return Response("Wrong parameters", status=status.HTTP_401_UNAUTHORIZED)
 
 
-class ListBookAPIView(APIView):
+class ListBookAPIView(ListAPIView):
     serializer_class = BookSerializer
-
-    def get(self, request):
-        books = Book.objects.all()
-        serializer = self.serializer_class(books, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    filterset_class = BookFilter
+    model = Book
+    queryset = Book.objects.all()
 
 
 class RetrieveBookAPIView(APIView):
