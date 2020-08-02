@@ -2,9 +2,15 @@ import json
 
 import requests
 from django.shortcuts import render
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter
+
 from rest_framework import status
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 
+from .filters import BookFilter
+from .parsers import book_parser
 from .serializers import CreateBookSerializer, BookSerializer
 from .models import Book
 # Create your views here.
@@ -20,48 +26,30 @@ class FillDatabaseAPIView(APIView):
             data = json.loads(res.text)
             books = data["items"]
             for book in books:
-                volume_info = book["volumeInfo"]
-                book_data = {
-                    "title": volume_info["title"],
-                    "authors": volume_info["authors"],
-                    "published_date": volume_info["publishedDate"],
-                    "categories": volume_info.get("categories", []),
-                    "average_rating": volume_info.get("averageRating", 0),
-                    "ratings_count": volume_info.get("ratingsCount", 0),
-                    "thumbnail": volume_info["imageLinks"]["thumbnail"]
-                }
+                book_data = book_parser(book)
                 try:
                     existing_book = Book.objects.get(id=book["id"])
                     serializer = self.serializer_class(existing_book, data=book_data, partial=True)
-                    serializer.is_valid(raise_exception=True)
-                    serializer.save()
                 except Book.DoesNotExist:
                     book_data["id"] = book["id"]
                     serializer = self.serializer_class(data=book_data)
-                    serializer.is_valid(raise_exception=True)
-                    serializer.save()
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
             books_list = Book.objects.all()
             serializer = self.serializer_class(books_list, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response("Wrong parameters", status=status.HTTP_401_UNAUTHORIZED)
 
 
-class ListBookAPIView(APIView):
+class ListBookAPIView(ListAPIView):
     serializer_class = BookSerializer
+    model = Book
+    queryset = Book.objects.all()
+    filter_backends = (DjangoFilterBackend, OrderingFilter)
+    filterset_class = BookFilter
+    ordering_fields = ("published_date",)
 
-    def get(self, request):
-        books = Book.objects.all()
-        serializer = self.serializer_class(books, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
 
-
-class RetrieveBookAPIView(APIView):
+class RetrieveBookAPIView(RetrieveAPIView):
     serializer_class = BookSerializer
-
-    def get(self, request, *args, **kwargs):
-        try:
-            book = Book.objects.get(id=self.kwargs["id"])
-            serializer = self.serializer_class(book)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Book.DoesNotExist:
-            return Response("Book with this ID not found!", status=status.HTTP_401_UNAUTHORIZED)
+    queryset = Book.objects.all()
