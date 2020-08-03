@@ -17,24 +17,29 @@ from .models import Book
 from rest_framework.views import APIView
 
 
+def create_or_update_book(book):
+    book_data = book_parser(book)
+    try:
+        existing_book = Book.objects.get(id=book["id"])
+        serializer = CreateBookSerializer(existing_book, data=book_data, partial=True)
+    except Book.DoesNotExist:
+        book_data["id"] = book["id"]
+        serializer = CreateBookSerializer(data=book_data)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
+
+
 class FillDatabaseAPIView(APIView):
     serializer_class = CreateBookSerializer
 
     def post(self, request):
         if "q" in request.data and request.data["q"] == "war":
-            res = requests.get("https://www.googleapis.com/books/v1/volumes?q=war")
+            google_api_address = "https://www.googleapis.com/books/v1/volumes?q=war"
+            res = requests.get(google_api_address)
             data = json.loads(res.text)
             books = data["items"]
             for book in books:
-                book_data = book_parser(book)
-                try:
-                    existing_book = Book.objects.get(id=book["id"])
-                    serializer = self.serializer_class(existing_book, data=book_data, partial=True)
-                except Book.DoesNotExist:
-                    book_data["id"] = book["id"]
-                    serializer = self.serializer_class(data=book_data)
-                serializer.is_valid(raise_exception=True)
-                serializer.save()
+                create_or_update_book(book)
             books_list = Book.objects.all()
             serializer = self.serializer_class(books_list, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
