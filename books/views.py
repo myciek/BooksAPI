@@ -33,8 +33,8 @@ class FillDatabaseAPIView(APIView):
                 except Book.DoesNotExist:
                     book_data["id"] = book["id"]
                     serializer = self.serializer_class(data=book_data)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
+                serializer.is_valid(raise_exception=True)
+                serializer.save()
             books_list = Book.objects.all()
             serializer = self.serializer_class(books_list, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)

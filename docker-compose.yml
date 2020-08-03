@@ -18,7 +18,10 @@ services:
         POSTGRES_PORT: 5432
         SECRET_KEY: 'c-^#em%z6o#)$$j*tj2zb8$$%q9&%yyzae_v!*u=afe(war=!q!!'
       build: .
-      command: python manage.py runserver 0.0.0.0:8003
+      command:  bash -c " python manage.py flush --no-input
+        && python manage.py loaddata initial_data.json
+        && python manage.py migrate
+        && python manage.py runserver 0.0.0.0:8003"
       volumes:
         - .:/code
       ports:
