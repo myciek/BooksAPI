@@ -1,0 +1,170 @@
+[
+  {
+    "model": "books.book",
+    "fields": {
+      "id": "DqLPAAAAMAAJ",
+      "title": "Hobbit czyli Tam i z powrotem",
+      "authors": [
+        "John Ronald Reuel Tolkien"
+      ],
+      "published_date": "1985",
+      "categories": [],
+      "average_rating": "0.0",
+      "ratings_count": 0,
+      "thumbnail": "http://books.google.com/books/content?id=DqLPAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+    }
+  },
+  {
+    "model": "books.book",
+    "fields": {
+      "id": "YyXoAAAACAAJ",
+      "title": "Hobbit czyli Tam i z powrotem",
+      "authors": [
+        "J. R. R. Tolkien"
+      ],
+      "published_date": "2004",
+      "categories": [
+        "Baggins, Bilbo (Fictitious character)"
+      ],
+      "average_rating": "5.0",
+      "ratings_count": 2,
+      "thumbnail": "http://books.google.com/books/content?id=YyXoAAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+    }
+  },
+  {
+    "model": "books.book",
+    "fields": {
+      "id": "KY0BDObXftUC",
+      "title": "Exploring J.R.R. Tolkien's The Hobbit",
+      "authors": [
+        "Corey Olsen"
+      ],
+      "published_date": "2012",
+      "categories": [
+        "Literary Criticism"
+      ],
+      "average_rating": "4.0",
+      "ratings_count": 8,
+      "thumbnail": "http://books.google.com/books/content?id=KY0BDObXftUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+    }
+  },
+  {
+    "model": "books.book",
+    "fields": {
+      "id": "QMZ-SpsAuasC",
+      "title": "The Christian World of The Hobbit",
+      "authors": [
+        "Devin Brown"
+      ],
+      "published_date": "2012",
+      "categories": [
+        "Literary Criticism"
+      ],
+      "average_rating": "4.5",
+      "ratings_count": 5,
+      "thumbnail": "http://books.google.com/books/content?id=QMZ-SpsAuasC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+    }
+  },
+  {
+    "model": "books.book",
+    "fields": {
+      "id": "hFfhrCWiLSMC",
+      "title": "The Hobbit, Or, There and Back Again",
+      "authors": [
+        "John Ronald Reuel Tolkien"
+      ],
+      "published_date": "1982",
+      "categories": [
+        "FICTION"
+      ],
+      "average_rating": "4.0",
+      "ratings_count": 2649,
+      "thumbnail": "http://books.google.com/books/content?id=hFfhrCWiLSMC&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+    }
+  },
+  {
+    "model": "books.book",
+    "fields": {
+      "id": "8ef3-s6fixIC",
+      "title": "I Am in Fact a Hobbit",
+      "authors": [
+        "Perry C. Bramlett"
+      ],
+      "published_date": "2003",
+      "categories": [
+        "Biography & Autobiography"
+      ],
+      "average_rating": "5.0",
+      "ratings_count": 2,
+      "thumbnail": "http://books.google.com/books/content?id=8ef3-s6fixIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+    }
+  },
+  {
+    "model": "books.book",
+    "fields": {
+      "id": "N_0VhzQKIIAC",
+      "title": "Finding God in the Hobbit",
+      "authors": [
+        "Jim Ware"
+      ],
+      "published_date": "2006",
+      "categories": [
+        "Religion"
+      ],
+      "average_rating": "4.5",
+      "ratings_count": 13,
+      "thumbnail": "http://books.google.com/books/content?id=N_0VhzQKIIAC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+    }
+  },
+  {
+    "model": "books.book",
+    "fields": {
+      "id": "CSUeAQAAIAAJ",
+      "title": "The Hobbit",
+      "authors": [
+        "William Howard Green"
+      ],
+      "published_date": "1995",
+      "categories": [
+        "Literary Criticism"
+      ],
+      "average_rating": "0.0",
+      "ratings_count": 0,
+      "thumbnail": "http://books.google.com/books/content?id=CSUeAQAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
+    }
+  },
+  {
+    "model": "books.book",
+    "fields": {
+      "id": "H8ON-dTgQQYC",
+      "title": "The Hobbit",
+      "authors": [
+        "Jude Fisher"
+      ],
+      "published_date": "2012",
+      "categories": [
+        "Art"
+      ],
+      "average_rating": "4.5",
+      "ratings_count": 8,
+      "thumbnail": "http://books.google.com/books/content?id=H8ON-dTgQQYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+    }
+  },
+  {
+    "model": "books.book",
+    "fields": {
+      "id": "KUSn4G6eiCUC",
+      "title": "A Hobbit Devotional",
+      "authors": [
+        "Ed Strauss"
+      ],
+      "published_date": "2012-09-01",
+      "categories": [
+        "Religion"
+      ],
+      "average_rating": "4.0",
+      "ratings_count": 7,
+      "thumbnail": "http://books.google.com/books/content?id=KUSn4G6eiCUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+    }
+  }
+]
