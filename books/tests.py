@@ -45,18 +45,21 @@ class FillDatabaseTest(APITestCase):
         res = self.client.post(reverse("books:fill_db"), {"q": "war"})
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
-    class BooksListTest(APITestCase):
-        def setUp(self):
-            res = self.client.post(reverse("books:fill_db"), {"q": "war"})
 
-        def test_books_list_success(self):
-            res = self.client.get(reverse("books:books_list"))
-            self.assertEqual(res.status_code, status.HTTP_200_OK)
+class BooksListTest(APITestCase):
+    def setUp(self):
+        res = self.client.post(reverse("books:fill_db"), {"q": "war"})
 
-    class RetrieveBookTest(APITestCase):
-        def setUp(self):
-            res = self.client.post(reverse("books:fill_db"), {"q": "war"})
+    def test_books_list_success(self):
+        res = self.client.get(reverse("books:books_list"))
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
 
-        def _success(self):
-            res = self.client.get(reverse("books:books_list"))
-            self.assertEqual(res.status_code, status.HTTP_200_OK)
+
+class RetrieveBookTest(APITestCase):
+    def setUp(self):
+        res = self.client.post(reverse("books:fill_db"), {"q": "war"})
+
+    def test_retrieve_book_success(self):
+        res = self.client.get(reverse("books:retrieve_book", kwargs={"pk": "iY4yZEkphNgC"}))
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.data["title"], "On War")
