@@ -2,4 +2,7 @@ Django
 psycopg2-binary>=2.8
 djangorestframework
 requests
-django-filter
+django-filter>=2.2
+django-environ
+gunicorn
+django-heroku

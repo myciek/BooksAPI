@@ -117,7 +117,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+booksapi/.env
 .venv
 env/
 venv/
@@ -296,6 +296,7 @@ fabric.properties
 # SageMath parsed files
 
 # Environments
+booksapi/.env
 
 # Spyder project settings
 
