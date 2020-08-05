@@ -6,7 +6,7 @@ Recruitment task in Django
 - move to the repo direction
 - edit .env.template file and add your variables to connect with database and secret key
 - change name of .env.template to .env
-- in docker-compose.yml db service environment should be the same as in .env file
+- in docker-compose.yml make sure that environment variables for db service are the same as in .env file
 - run ```docker-compose up --build``` (it will populate database and run app)
 - go to ```http://localhost:8003/<endpoint>``` to use application
 
@@ -14,7 +14,7 @@ Recruitment task in Django
 - ```/books``` - [GET] list of all books.\
     <b>Optional parameters</b>:
     - filtring: ```/books?<filter>=<data>``` where ```<filter>``` can be ```author``` or ```published_date```
-    - sorting: ```/books?ordering=published_date" - from oldest or ```/books?ordering=-published_date``` from newest
+    - sorting: ```/books?ordering=published_date``` - from oldest or ```/books?ordering=-published_date``` from newest
   
 - ```/books/<id>``` - [GET] retrieve book with given id
 - ```/db``` - [POST] with {"q": "war"} body - fill database with new books and update existing ones
@@ -23,5 +23,5 @@ Recruitment task in Django
 - run ```docker-compose run api python manage.py test``` to start tests
 
 ## Development choices
-- I decided to use ArrayField for authors and categories instead of using ManyToMany fields, becouse i didin't have to use this fields in any cases that needed seperate models.
+- I decided to use ArrayField for authors and categories instead of using ManyToMany fields, becouse i didn't have to use this fields in any cases that needed seperate models.
 
