@@ -2,10 +2,10 @@ import json
 
 import requests
 from django.shortcuts import render
-from django_filters.rest_framework import DjangoFilterBackend, OrderingFilter
-
+from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework import status
+from rest_framework.filters import OrderingFilter
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 
